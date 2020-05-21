@@ -10,7 +10,7 @@
 
     <style>
       #map {
-        height: 400px;
+        height: 600px;
         width: 100%;
       }
     </style>
@@ -22,7 +22,7 @@
       function initMap() {
         // map options
         var options = {
-          zoom: 12,
+          zoom: 13,
           center: {
             lat: -1.2681032,
             lng: 36.8012525
@@ -32,26 +32,67 @@
         // new map
         var map = new google.maps.Map(document.getElementById('map'), options);
 
-        // map maker
-        var marker = new google.maps.Marker({
-          position: {
-            lat: -1.2681032,
-            lng: 36.8012525
-          },
-          map: map,
-          icon:
-            'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        // // map maker
+        // var marker = new google.maps.Marker({
+        //   position: {
+        //     lat: -1.2681032,
+        //     lng: 36.8012525
+        //   },
+        //   map: map,
+        //   icon:
+        //     'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        // });
+
+        // // info window
+        // var infoWindow = new google.maps.InfoWindow({
+        //   content: '<h3>Westlands</h3>'
+        // });
+
+        // // listen for a click
+        // marker.addListener('click', function() {
+        //   infoWindow.open(map, marker);
+        // });
+
+        addMaker({
+          coords: { lat: -1.268103, lng: 36.801252 },
+          iconImage:
+            'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          content: '<h3>One Plaza, Westlands</h3>'
+        });
+        addMaker({
+          coords: { lat: -1.265679, lng: 36.800459 }
+        });
+        addMaker({
+          coords: { lat: -1.259887, lng: 36.775267 }
         });
 
-        // info window
-        var infoWindow = new google.maps.InfoWindow({
-          content: '<h3>Westlands</h3>'
-        });
+        // Add maker Function
+        function addMaker(props) {
+          var marker = new google.maps.Marker({
+            position: props.coords,
+            map: map
+            // icon: props.iconImage
+          });
 
-        // listen for a click
-        marker.addListener('click', function() {
-          infoWindow.open(map, marker);
-        });
+          // check for customIcon
+          if (props.iconImage) {
+            // set ico image
+            marker.setIcon(props.iconImage);
+          }
+
+          // check content
+          if (props.content) {
+            // set info window
+            var infoWindow = new google.maps.InfoWindow({
+              content: props.content
+            });
+
+            // listen for a click
+            marker.addListener('click', function() {
+              infoWindow.open(map, marker);
+            });
+          }
+        }
       }
     </script>
 
