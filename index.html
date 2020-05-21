@@ -32,39 +32,30 @@
         // new map
         var map = new google.maps.Map(document.getElementById('map'), options);
 
-        // // map maker
-        // var marker = new google.maps.Marker({
-        //   position: {
-        //     lat: -1.2681032,
-        //     lng: 36.8012525
-        //   },
-        //   map: map,
-        //   icon:
-        //     'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-        // });
+        // markers array
+        var markers = [
+          {
+            coords: { lat: -1.268103, lng: 36.801252 },
+            iconImage:
+              'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: '<h3>One Plaza, Westlands</h3>'
+          },
+          {
+            coords: { lat: -1.265679, lng: 36.800459 },
+            content: '<h3>The Mall, Westlands</h3>'
+          },
+          {
+            coords: { lat: -1.259887, lng: 36.775267 },
+            content: '<h3>360 degrees, ABC Mall</h3>'
+          }
+        ];
 
-        // // info window
-        // var infoWindow = new google.maps.InfoWindow({
-        //   content: '<h3>Westlands</h3>'
-        // });
-
-        // // listen for a click
-        // marker.addListener('click', function() {
-        //   infoWindow.open(map, marker);
-        // });
-
-        addMaker({
-          coords: { lat: -1.268103, lng: 36.801252 },
-          iconImage:
-            'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-          content: '<h3>One Plaza, Westlands</h3>'
-        });
-        addMaker({
-          coords: { lat: -1.265679, lng: 36.800459 }
-        });
-        addMaker({
-          coords: { lat: -1.259887, lng: 36.775267 }
-        });
+        // loop through markers
+        for (let i = 0; i < markers.length; i++) {
+          const element = markers[i];
+          // add a marker
+          addMaker(element);
+        }
 
         // Add maker Function
         function addMaker(props) {
