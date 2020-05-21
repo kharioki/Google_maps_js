@@ -7,12 +7,29 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="" />
+
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <script src="" async defer></script>
-
+    <h1>My Google Map</h1>
+    <div id="map"></div>
     <script>
-      function initMap() {}
+      function initMap() {
+        var options = {
+          zoom: 4,
+          center: {
+            lat: 1.2921,
+            lng: 36.8219
+          }
+        };
+
+        var map = new google.maps.Map(document.getElementById('map'), options);
+      }
     </script>
 
     <script
